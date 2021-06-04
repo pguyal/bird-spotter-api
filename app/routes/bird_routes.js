@@ -54,6 +54,7 @@ router.get('/birds', requireToken, (req, res, next) => {
 // the user making the request
 router.get('/birds-all', requireToken, (req, res, next) => {
   Bird.find()
+    .populate('owner', 'email')
     .then(birds => {
       // `birds` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
